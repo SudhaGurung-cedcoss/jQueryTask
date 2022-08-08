@@ -1,5 +1,5 @@
 
-  const image=['i.webp','image.webp','ZiClJf-1920w.jpg','i (1).webp'];
+  const image=['i.webp','image.webp','ZiClJf-1920w.jpg','pic.webp'];
   var i=0;
 $(document).ready(function(){
    
