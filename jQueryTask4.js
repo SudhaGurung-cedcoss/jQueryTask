@@ -2,24 +2,41 @@ $(document).ready(function(){
 
 
 
-    $firstName=document.getElementById('firstName').value;
-    $lastName=document.getElementById('lastName').value;
-
-   $("#btn").click(function(){
+  $("#firstName").focus();
+   $("#btn").click(function(){ 
    
-     
-    if(($firstName || $lastName )==""){
+    $firstName=$("#firstName").val();
+    $lastName=$("#lastName").val();
+    $("#firstName").css("background-color","");
+    $("#lastName").css("background-color","");
+    if($firstName =="" ||$lastName ==""){
         alert("cannot be empty");
-     $("#firstName,#lastName").focus(function(){
-       $("#firstName,#lastName").css("background-color","red");
-     })
+      }
+      else{
+      return;
+      }
+     
+        if($lastName==""){
+          $("#lastName").focus(); 
+          $("#lastName").css("background-color","red");
+         }
+         else{
+          return;
+         }
     
-    }
     
-
-    
+     
+     if($firstName==""){
+      $("#firstName").focus(); 
+      $("#firstName").css("background-color","red");
+     }
+     else{
+      return;
+     }
 
    });
+   
+   
 
 });
 
