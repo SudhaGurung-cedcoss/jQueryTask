@@ -1,27 +1,24 @@
 
-var arrFlower=["Rose","lily","Lotus","Jasmin","Sunflower","Daisy","Tulip","Lavender","Magnolia"];
-var store;
+var arrFlower=["Rose","Lily","Lavender","Lotus","Jasmin","Sunflower","Daisy","Tulip","Magnolia"];
+
 $(document).ready(function(){
-    
-  
+   
     $("#flower").keyup(function(){
-       
-    
-     store=arrFlower.map(index)
+      $matchedItem="";
+  
+       for(i=0;i<arrFlower.length;i++){
 
-     function index(num)
-     {
-        return (num[0]);
-     }
-
-      for(i=0;i<store.length;i++){
-       
-        if($("#flower").val()==store[i]){
-           $("#suggestion").html("suggestion  :"+ arrFlower[i]);
+         $flower_input=$("#flower").val();
+         $match=arrFlower[i].substring(0,$flower_input.length);
+        
+         if($flower_input==$match){
+           $matchedItem+=" "+arrFlower[i];
+           $("#suggestion").html("Suggestion :"+$matchedItem);
            }
-          
-        }
-
+     
+  
+      }
+   
     })
    
 })
