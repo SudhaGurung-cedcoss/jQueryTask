@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     // jQuery methods go here...
-    $("#btn").click(function(){
+    $("#confirmPass").keyup(function(){
        $pass=document.getElementById('pass').value;
        $confirmpass=document.getElementById('confirmPass').value;
         if($pass!=$confirmpass){
