@@ -1,5 +1,7 @@
 $(document).ready(function(){
-
+      
+   $("#DuffleSel").val("small");
+   $("#td1").html("1000 /-");
     // jQuery methods go here...
     $("#DuffleSel").click(function(){
        $v=$(this).val();
@@ -15,7 +17,8 @@ $(document).ready(function(){
        }
     })
 
-
+    $("#T-shirtsSel").val("lightgrey");
+    $("#td2").html("100 /-");
     $("#T-shirtsSel").click(function(){
         $v=$(this).val();
         if($v=="lightgrey"){
