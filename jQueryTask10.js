@@ -10,20 +10,20 @@ $(document).ready(function(){
 
  $("#T-shirts").click(function(){
 
-    $("#ulList2").append("<ul><li>clothes<button id='btn2'>+</button></li><ul>");
+    $("#ulList2").append("<ul><li>T-shirts<button id='btn2'>+</button></li><ul>");
  })
 
  $(this).on("click","#btn2",function(){
-    $("#ulList").append("<ul><li>clothes<button id='btn2'>+</button></li><ul>");
+    $("#ulList2").append("<ul><li>T-shirts<button id='btn2'>+</button></li><ul>");
  })
 
  $("#Trousers").click(function(){
 
-    $("#ulList3").append("<ul><li>clothes<button id='btn3'>+</button></li><ul>");
+    $("#ulList3").append("<ul><li>Trousers<button id='btn3'>+</button></li><ul>");
  })
 
  $(this).on("click","#btn3",function(){
-    $("#ulList").append("<ul><li>clothes<button id='btn3'>+</button></li><ul>");
+    $("#ulList3").append("<ul><li>Trousers<button id='btn3'>+</button></li><ul>");
  })
 
 
