@@ -85,6 +85,9 @@ var products = [{
 				show+="<tr><td>"+products[i].id+"</td><td>"+products[i].name+"</td><td>"+products[i].brand+"</td><td>"+products[i].os+"</td><td>"+"<lable id='label'>X</label>"+"</td></tr>";
 			
 			    }
+				else{
+				$("#Disp").hide();	
+				}
 			
 			}
 			$("#display").html(show);
