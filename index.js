@@ -2,7 +2,60 @@ var arr=[];
 $(document).ready(function(){
      $regexName=/^[a-zA-z]+$/;
      $regexNum=/^[0-9]+$/;
+     
+     $("#product_sku").blur(function(){
+        $product_sku=$("#product_sku").val(); 
+        if($product_sku.match($regexNum)){
+            $("#product_sku").removeClass("NameError");
+            $("#skuError").html("");
+        }
+        else{
+            $("#product_sku").addClass("NameError");
+            $("#skuError").html("sku cannot be empty");
+        }
+       
+    })
 
+    $("#product_name").blur(function(){
+        $product_name=$("#product_name").val(); 
+        if($product_name.match($regexName)){
+            $("#product_name").removeClass("NameError");
+            $("#nameError").html("");
+        }
+        else{
+            $("#product_name").addClass("NameError");
+            $("#nameError").html("name cannot be empty");
+        }
+       
+    })
+
+      
+    $("#product_price").blur(function(){
+        $product_price=$("#product_price").val(); 
+        if($product_price.match($regexNum)){
+            $("#product_price").removeClass("NameError");
+            $("#priceError").html("");
+        }
+        else{
+            $("#product_price").addClass("NameError");
+            $("#priceError").html("price cannot be empty");
+        }
+       
+    })
+
+      
+    $("#product_quantity").blur(function(){
+        $product_quantity=$("#product_quantity").val(); 
+        if($product_quantity.match($regexNum)){
+            $("#product_quantity").removeClass("NameError");
+            $("#quantityError").html("");
+        }
+        else{
+            $("#product_quantity").addClass("NameError");
+            $("#quantityError").html("quantity cannot be empty");
+        }
+       
+    })
      //adding values 
      $("#add_product").click(function(){
      if($("#add_product").text()=="Update Product"){
@@ -39,8 +92,7 @@ $(document).ready(function(){
       } 
       if(arr.length==0)
       $("#displayItem").html("");  
-      $("#product_list").addClass("display");
-      
+     
      }
 
     //delete the data 
@@ -65,30 +117,11 @@ $(document).ready(function(){
      }
      else{
         $(".error").show();
-        $("#nameError").html("name cannot be Empty"); 
-        $("#skuError").html("sku cannot be empty");
-        $("#priceError").html("price cannot be empty");
-        $("#quantityError").html("quantity cannot be empty");
-        $("#product_name,#product_sku,#product_price,#product_quantity").addClass("NameError");
-            if($product_sku.match($regexNum)){
-                $("#product_sku").removeClass("NameError");
-                $("#skuError").html("");
-            }
-            if($product_name.match($regexName)){
-                $("#product_name").removeClass("NameError");
-                $("#nameError").html("");
-            }
-            if($product_price.match($regexNum)){
-                $("#product_price").removeClass("NameError");
-                $("#priceError").html("");
-            }
-            if($product_quantity.match($regexNum)){
-                $("#product_quantity").removeClass("NameError");
-                $("#quantityError").html("");
-            }
-            return false;
-        }
-     }
+        $("#product_sku,#product_name,#product_price,#product_quantity").addClass("NameError");
+         return false;  
+        }   
+      
+    
 
     //edit operation perform
      $(this).on("click","#edit",function(){
@@ -103,7 +136,7 @@ $(document).ready(function(){
      
        
       
-      
+    }
 })
 
 
