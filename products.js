@@ -75,13 +75,16 @@ var products = [{
 
 	 $("#btnSearch").click(function(){
 			$search=$("#searchText").val();
+			 $search=$search.toLowerCase();
+			
 			let show="";
 			for(i=0;i<products.length;i++)
 			{
 				if(products[i].id==$search){
+					 
 					show+="<tr><td>"+products[i].id+"</td><td>"+products[i].name+"</td><td>"+products[i].brand+"</td><td>"+products[i].os+"</td><td>"+"<lable id='label'>X</label>"+"</td></tr>";	
 				}
-			    else if(products[i].name==$search){
+			    else if(products[i].name.toLowerCase()==$search){
 				show+="<tr><td>"+products[i].id+"</td><td>"+products[i].name+"</td><td>"+products[i].brand+"</td><td>"+products[i].os+"</td><td>"+"<lable id='label'>X</label>"+"</td></tr>";
 			
 			    }
