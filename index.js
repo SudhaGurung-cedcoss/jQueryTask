@@ -2,6 +2,7 @@ var arr=[];
 $(document).ready(function(){
      $regexName=/^[a-zA-z]+$/;
      $regexNum=/^[0-9]+$/;
+     $regMix=/^[A-Za-z0-9]+$/;
      
      
      //adding values 
@@ -11,22 +12,34 @@ $(document).ready(function(){
         $product_name=$("#product_name").val(); 
         $product_price=$("#product_price").val(); 
         $product_quantity=$("#product_quantity").val(); 
-        arr[$tr_index].productSku=$product_sku; 
-        arr[$tr_index].productName=$product_name
-        arr[$tr_index].productPrice=$product_price; 
-        arr[$tr_index].productQuantity=$product_quantity;
-        $("#add_product").html("Add Product");
-        populate(arr);
+        var value=matchName();
+        if(value){
+            arr[$tr_index].productSku=$product_sku; 
+            arr[$tr_index].productName=$product_name
+            arr[$tr_index].productPrice=$product_price; 
+            arr[$tr_index].productQuantity=$product_quantity;
+            $("#add_product").html("Add Product");
+            populate(arr);
+        }
+        else{
+            $(".error").show(); 
+            $(".success").hide();
+        }
+       
      }
     else{
         $product_sku=$("#product_sku").val(); 
         $product_name=$("#product_name").val(); 
         $product_price=$("#product_price").val(); 
         $product_quantity=$("#product_quantity").val(); 
-         var value=matchName($product_name,$product_sku);
+         var value=matchName();
          if(value){
             arr.push({"productSku":$product_sku,"productName":$product_name,"productPrice":$product_price,"productQuantity":$product_quantity});
             populate(arr);
+         }
+         else{
+           $(".error").show(); 
+           $(".success").hide();
          }
     }
         
@@ -67,6 +80,7 @@ $(document).ready(function(){
 
     //validating data
      function matchName(){
+        var flag=0;
      if($product_name.match($regexName) && $product_sku.match($regexNum) && $product_price.match($regexNum) && $product_quantity.match($regexNum)  ){
          $("#nameError,#skuError,#priceError,#quantityError").html("");
          $(".success").show();
@@ -77,24 +91,29 @@ $(document).ready(function(){
      }
      else{
             if($("#product_sku").val()=="" && $("#product_name").val()=="" && $("#product_price").val()=="" && $("#product_quantity").val()==""){
-                $("#product_name,#product_sku,#product_price,#product_quantity").addClass("NameError");  
+                $("#product_name,#product_sku,#product_price,#product_quantity").addClass("NameError"); 
+             
             }
-            if($("#product_sku").val()=="" || $("#product_name").val()=="" || $("#product_price").val()=="" || $("#product_quantity").val()==""){
-                if($("#product_sku")=="" ){
-                $("#product_sku").addClass("NameError");  
-                }
-                if($("#product_name")=="" ){
-                $("#product_name").addClass("NameError");  
-                }
-                if($("#product_price")=="" ){
-                $("#product_price").addClass("NameError");  
-                }
-                if($("#product_quantity")=="" ){
-                $("#product_quantity").addClass("NameError");  
-                }
-            
-            }
-            $(".error").show();
+            // if($("#product_sku").val()=="" || $("#product_name").val()=="" || $("#product_price").val()=="" || $("#product_quantity").val()==""){
+            //     if($("#product_sku")=="" ){
+            //     $("#product_sku").addClass("NameError"); 
+               
+            //     }
+            //     if($("#product_name")=="" ){
+            //     $("#product_name").addClass("NameError");  
+             
+            //     }
+            //     if($("#product_price")=="" ){
+            //     $("#product_price").addClass("NameError");  
+               
+            //     }
+            //     if($("#product_quantity")=="" ){
+            //     $("#product_quantity").addClass("NameError");  
+               
+            //     }
+             
+            // }
+
         
             $("#product_sku").blur(function(){
                 $product_sku=$("#product_sku").val(); 
@@ -106,7 +125,11 @@ $(document).ready(function(){
                     $("#product_sku").addClass("NameError");
                     $("#skuError").html("sku contains number");
                 }
-                else{
+                else if($product_sku.match($regMix)){
+                    $("#product_sku").addClass("NameError");
+                    $("#skuError").html("sku contains only number");
+                }
+                else {
                     $("#product_sku").addClass("NameError");
                     $("#skuError").html("sku cannot be empty");
                 }
@@ -123,7 +146,11 @@ $(document).ready(function(){
                 $("#product_name").addClass("NameError");
                 $("#nameError").html("name contains alphabet ");
             }
-            else{
+            else if($product_name.match($regMix)){
+                $("#product_name").addClass("NameError");
+                $("#nameError").html("name contains only alphabet");
+            }
+            else {
                 $("#product_name").addClass("NameError");
                 $("#nameError").html("name cannot be empty");
             }
@@ -140,6 +167,10 @@ $(document).ready(function(){
             else if($product_price.match($regexName)){
                 $("#product_price").addClass("NameError");
                 $("#priceError").html("price contains number");
+            }
+            else if($product_price.match($regMix)){
+                $("#product_price").addClass("NameError");
+                $("#priceError").html("price contains only number");
             }
             else{
                 $("#product_price").addClass("NameError");
@@ -158,6 +189,10 @@ $(document).ready(function(){
             else if($product_quantity.match($regexName)){
                 $("#product_quantity").addClass("NameError");
                 $("#quantityError").html("quantity contains number");
+            }
+            else if($product_quantity.match($regMix)){
+                $("#product_quantity").addClass("NameError");
+                $("#quantityError").html("quantity contains only number");
             }
             else{
                 $("#product_quantity").addClass("NameError");
